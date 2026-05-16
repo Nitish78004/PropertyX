@@ -76,12 +76,11 @@ const Login = () => {
                                 <span className="text-muted">OR</span>
                             </div>
 
-                            {/* <div className="d-flex justify-content-center">
+                            <div className="d-flex justify-content-center">
                                 <GoogleLogin
                                     onSuccess={credentialResponse => {
                                         const decoded = jwtDecode(credentialResponse.credential);
                                         console.log(decoded);
-                                        // Simulate login with Google data
                                         const mockUser = {
                                             _id: "google_" + decoded.sub,
                                             name: decoded.name,
@@ -97,7 +96,7 @@ const Login = () => {
                                         Swal.fire("Error", "Google Login Failed", "error");
                                     }}
                                 />
-                            </div> */}
+                            </div>
                         </form>
                     </div>
                 </div>
