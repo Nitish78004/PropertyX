@@ -51,8 +51,8 @@ const NavBar = ({ userData, handleLogout }) => {
     );
 
     return (
-        <div className="fixed-top w-100" style={{ zIndex: 1050, background: 'transparent' }}>
-            <div className="container mt-4">
+        <div className="fixed-top w-100" style={{ zIndex: 1050, background: 'transparent', pointerEvents: 'none' }}>
+            <div className="container mt-4" style={{ pointerEvents: 'auto' }}>
                 <nav className="navbar navbar-expand-lg shadow rounded-pill py-2 px-4 floating-nav" 
                      style={{ 
                         transition: 'all 0.3s ease',

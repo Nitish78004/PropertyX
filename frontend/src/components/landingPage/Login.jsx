@@ -6,7 +6,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from "jwt-decode";
 
 const schema = yup.object().shape({
     email: yup.string().email("Invalid email").required("Email is required"),
@@ -64,8 +66,35 @@ const Login = () => {
                                 </div>
                             </div>
                             {errors?.password && <p className='text-danger'>{errors?.password?.message}</p>}
-                            <div className="text-center">
-                                <button type="submit" className="btn btn-outline-danger px-4">Login</button>
+                            <div className="text-center mb-3">
+                                <button type="submit" className="btn btn-outline-danger px-5 rounded-pill fw-bold">Login</button>
+                            </div>
+
+                            <div className="text-center my-3">
+                                <span className="text-muted">OR</span>
+                            </div>
+
+                            <div className="d-flex justify-content-center">
+                                <GoogleLogin
+                                    onSuccess={credentialResponse => {
+                                        const decoded = jwtDecode(credentialResponse.credential);
+                                        console.log(decoded);
+                                        // Simulate login with Google data
+                                        const mockUser = {
+                                            _id: "google_" + decoded.sub,
+                                            name: decoded.name,
+                                            email: decoded.email,
+                                            userType: "user"
+                                        };
+                                        localStorage.setItem('userInfo', JSON.stringify(mockUser));
+                                        Swal.fire("Success", `Welcome ${decoded.name}!`, "success");
+                                        navigate('/user-property');
+                                    }}
+                                    onError={() => {
+                                        console.log('Login Failed');
+                                        Swal.fire("Error", "Google Login Failed", "error");
+                                    }}
+                                />
                             </div>
                         </form>
                     </div>
