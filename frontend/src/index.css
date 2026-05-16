@@ -76,6 +76,12 @@ img {
     100% { transform: translateX(-50%); }
 }
 
+.hover-danger:hover {
+    color: #dc3545 !important;
+    transform: scale(1.1);
+    transition: all 0.2s ease;
+}
+
 /* Mobile specific padding adjustments */
 @media (max-width: 768px) {
     .container {

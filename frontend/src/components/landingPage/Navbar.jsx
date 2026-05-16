@@ -1,5 +1,10 @@
-import React from 'react'
 import { Link } from 'react-router-dom';
+import { TiMail } from "react-icons/ti";
+import { IoLocationOutline } from "react-icons/io5";
+import { SlSocialFacebook } from "react-icons/sl";
+import { CiTwitter } from "react-icons/ci";
+import { FaInstagram } from "react-icons/fa";
+import { FaDribbble } from "react-icons/fa6";
 
 const NavBar = ({ userData, handleLogout }) => {
     const brandLogo = (
@@ -47,7 +52,22 @@ const NavBar = ({ userData, handleLogout }) => {
 
     return (
         <div className="fixed-top w-100" style={{ zIndex: 1050 }}>
-            <div className="container mt-3">
+            <div className="container mt-2">
+                {/* Mini Top Info Bar */}
+                <div className="d-none d-lg-flex justify-content-between align-items-center px-4 py-1 mb-1 small text-muted" style={{ fontSize: '12px' }}>
+                    <div>
+                        <TiMail className="text-danger me-1" /> nknitishsingh91@gmail.com
+                        <span className="mx-2">|</span>
+                        <IoLocationOutline className="text-danger me-1" /> Uttar Pradesh, India
+                    </div>
+                    <div className="d-flex gap-3">
+                        <SlSocialFacebook style={{ cursor: 'pointer' }} className="hover-danger" />
+                        <CiTwitter style={{ cursor: 'pointer' }} className="hover-danger" />
+                        <FaInstagram style={{ cursor: 'pointer' }} className="hover-danger" />
+                        <FaDribbble style={{ cursor: 'pointer' }} className="hover-danger" />
+                    </div>
+                </div>
+
                 <nav className="navbar navbar-expand-lg bg-white shadow rounded-pill py-2 px-4 floating-nav" style={{ transition: 'all 0.3s ease' }}>
                 <div className="container-fluid">
                     {brandLogo}
