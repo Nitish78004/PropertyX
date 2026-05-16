@@ -13,8 +13,9 @@ import xss from "xss-clean";
 import hpp from "hpp";
 
 const app = express();
-app.use(cors()) // Move to top
-app.use(express.json({ limit: '10kb' })); 
+app.use(cors()) 
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
 
 // 1. Security HTTP Headers - Relaxed for local dev

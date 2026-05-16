@@ -138,7 +138,7 @@ const UserRegister = () => {
                                 <span className="text-muted">OR</span>
                             </div>
 
-                            <div className="d-flex justify-content-center">
+                            {/* <div className="d-flex justify-content-center">
                                 <GoogleLogin
                                     onSuccess={credentialResponse => {
                                         const decoded = jwtDecode(credentialResponse.credential);
@@ -156,7 +156,7 @@ const UserRegister = () => {
                                         console.log('Login Failed');
                                     }}
                                 />
-                            </div>
+                            </div> */}
                         </form>
                     </div>
                 </div>

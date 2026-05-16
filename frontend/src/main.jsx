@@ -10,10 +10,10 @@ const GOOGLE_CLIENT_ID = "YOUR_GOOGLE_CLIENT_ID_HERE";
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+    {/* <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}> */}
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </GoogleOAuthProvider>
+    {/* </GoogleOAuthProvider> */}
   </StrictMode>,
 )
