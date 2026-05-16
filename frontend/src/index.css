@@ -97,3 +97,28 @@ img {
         font-size: 1.5rem !important;
     }
 }
+
+/* Premium Mobile Menu Styles */
+@media (max-width: 991px) {
+    .navbar-nav {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .nav-item {
+        margin: 5px 0;
+    }
+
+    .nav-link {
+        display: inline-block !important;
+        font-size: 1.1rem;
+    }
+
+    .mobile-menu-wrapper {
+        background: rgba(255, 255, 255, 0.98);
+        border-radius: 20px;
+        margin-top: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+}

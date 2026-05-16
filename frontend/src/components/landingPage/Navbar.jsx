@@ -63,24 +63,27 @@ const NavBar = ({ userData, handleLogout }) => {
                     {brandLogo}
                     
                     <button className="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                        <span className="navbar-toggler-icon"></span>
+                        <div style={{ width: '22px', height: '2px', backgroundColor: '#dc3545', margin: '4px 0', borderRadius: '2px' }}></div>
+                        <div style={{ width: '16px', height: '2px', backgroundColor: '#dc3545', margin: '4px 0', borderRadius: '2px', marginLeft: '6px' }}></div>
+                        <div style={{ width: '22px', height: '2px', backgroundColor: '#dc3545', margin: '4px 0', borderRadius: '2px' }}></div>
                     </button>
 
                     <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
-                        {userData?.userType === "admin" ? adminNavItems : 
-                         userData?.userType === "user" ? userNavItems : 
-                         commonNavItems}
-                        
-                        {/* Mobile Only Buttons inside the collapse */}
-                        <div className="d-lg-none mt-3 pb-2 border-top pt-2">
-                             {userData ? (
-                                <button className="btn btn-danger w-100 rounded-pill fw-bold" onClick={handleLogout}>LogOut</button>
-                            ) : (
-                                <div className="d-grid gap-2">
-                                    <Link to='/login' className="btn btn-danger rounded-pill fw-bold">Login</Link>
-                                    <Link to='/register' className="btn btn-outline-danger rounded-pill fw-bold">Register</Link>
-                                </div>
-                            )}
+                        <div className="mobile-menu-wrapper py-3">
+                            {userData?.userType === "admin" ? adminNavItems : 
+                             userData?.userType === "user" ? userNavItems : 
+                             commonNavItems}
+                            
+                            <div className="d-lg-none mt-4 text-center">
+                                 {userData ? (
+                                    <button className="btn btn-danger px-5 rounded-pill fw-bold shadow-sm" onClick={handleLogout}>LogOut</button>
+                                ) : (
+                                    <div className="d-flex flex-column gap-3 align-items-center">
+                                        <Link to='/login' className="btn btn-danger px-5 rounded-pill fw-bold shadow-sm w-75">Login</Link>
+                                        <Link to='/register' className="btn btn-outline-danger px-5 rounded-pill fw-bold w-75">Register</Link>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
 
