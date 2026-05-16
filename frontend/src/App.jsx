@@ -3,7 +3,6 @@ import 'bootstrap/dist/js/bootstrap.bundle.js'
 import { useLocation, Routes, Route, useNavigate } from 'react-router-dom'
 import './App.css'
 import Home from './components/landingPage/Home'
-import TopNavbar from './components/landingPage/TopNavbar';
 import NavBar from './components/landingPage/Navbar';
 import About from './components/landingPage/About'
 import Services from './components/landingPage/Services'

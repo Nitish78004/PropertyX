@@ -51,16 +51,15 @@ const NavBar = ({ userData, handleLogout }) => {
     );
 
     return (
-        <div className="fixed-top w-100" style={{ zIndex: 1050, background: 'transparent', pointerEvents: 'none' }}>
-            <div className="container mt-4" style={{ pointerEvents: 'auto' }}>
-                <nav className="navbar navbar-expand-lg shadow rounded-pill py-2 px-4 floating-nav" 
-                     style={{ 
-                        transition: 'all 0.3s ease',
-                        background: 'rgba(255, 255, 255, 0.85)',
-                        backdropFilter: 'blur(10px)',
-                        border: '1px solid rgba(255, 255, 255, 0.2)'
-                     }}>
-                <div className="container-fluid">
+        <nav className="navbar navbar-expand-lg fixed-top py-4 bg-transparent" style={{ zIndex: 1050 }}>
+            <div className="container bg-white shadow rounded-pill px-4 py-2 floating-nav" 
+                 style={{ 
+                    transition: 'all 0.3s ease',
+                    background: 'rgba(255, 255, 255, 0.9)',
+                    backdropFilter: 'blur(15px)',
+                    border: '1px solid rgba(255, 255, 255, 0.3)'
+                 }}>
+                <div className="container-fluid d-flex align-items-center justify-content-between">
                     {brandLogo}
                     
                     <button className="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -82,21 +81,21 @@ const NavBar = ({ userData, handleLogout }) => {
                         )}
                     </div>
                 </div>
-            </nav>
-            
-            {/* Mobile Logout/Login - Shown inside collapse for mobile */}
-            <div className="collapse navbar-collapse d-lg-none bg-white rounded-4 shadow mt-2 p-3" id="navbarNav">
-                {userData ? (
-                    <button className="btn btn-danger w-100 rounded-pill fw-bold" onClick={handleLogout}>LogOut</button>
-                ) : (
-                    <div className="d-grid gap-2">
-                        <Link to='/login' className="btn btn-danger rounded-pill fw-bold">Login</Link>
-                        <Link to='/register' className="btn btn-outline-danger rounded-pill fw-bold">Register</Link>
-                    </div>
-                )}
+
+                {/* Mobile Menu Integration */}
+                <div className="collapse navbar-collapse d-lg-none" id="navbarNav">
+                    <hr className="my-2" />
+                    {userData ? (
+                        <button className="btn btn-danger w-100 rounded-pill fw-bold mb-2" onClick={handleLogout}>LogOut</button>
+                    ) : (
+                        <div className="d-grid gap-2 mb-2">
+                            <Link to='/login' className="btn btn-danger rounded-pill fw-bold">Login</Link>
+                            <Link to='/register' className="btn btn-outline-danger rounded-pill fw-bold">Register</Link>
+                        </div>
+                    )}
+                </div>
             </div>
-            </div>
-        </div>
+        </nav>
     );
 }
 
