@@ -98,27 +98,16 @@ img {
     }
 }
 
-/* Premium Mobile Menu Styles */
+/* Premium Mobile Side Sidebar Styles */
 @media (max-width: 991px) {
-    .navbar-nav {
-        text-align: center;
-        margin-top: 15px;
+    .mobile-nav-links .navbar-nav {
+        text-align: left;
+        margin-top: 10px;
     }
 
-    .nav-item {
-        margin: 5px 0;
-    }
-
-    .nav-link {
-        display: inline-block !important;
-        font-size: 1.1rem;
-    }
-
-    .mobile-menu-wrapper {
-        background: rgba(255, 255, 255, 0.98);
-        border-radius: 20px;
-        margin-top: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        border: 1px solid rgba(0,0,0,0.05);
+    .mobile-nav-links .nav-link {
+        display: block !important;
+        padding: 12px 0 !important;
+        border-bottom: 1px solid rgba(0,0,0,0.03);
     }
 }

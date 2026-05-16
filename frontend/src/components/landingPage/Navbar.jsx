@@ -62,30 +62,68 @@ const NavBar = ({ userData, handleLogout }) => {
                 <div className="container-fluid d-flex align-items-center justify-content-between">
                     {brandLogo}
                     
-                    <button className="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    {/* Professional Hamburger Icon for Mobile */}
+                    <button 
+                        className="navbar-toggler border-0 shadow-none d-lg-none p-2" 
+                        type="button" 
+                        data-bs-toggle="offcanvas" 
+                        data-bs-target="#offcanvasNavbar"
+                        aria-controls="offcanvasNavbar"
+                    >
                         <div style={{ width: '22px', height: '2px', backgroundColor: '#dc3545', margin: '4px 0', borderRadius: '2px' }}></div>
                         <div style={{ width: '16px', height: '2px', backgroundColor: '#dc3545', margin: '4px 0', borderRadius: '2px', marginLeft: '6px' }}></div>
                         <div style={{ width: '22px', height: '2px', backgroundColor: '#dc3545', margin: '4px 0', borderRadius: '2px' }}></div>
                     </button>
 
-                    <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
-                        <div className="mobile-menu-wrapper py-3">
-                            {userData?.userType === "admin" ? adminNavItems : 
-                             userData?.userType === "user" ? userNavItems : 
-                             commonNavItems}
-                            
-                            <div className="d-lg-none mt-4 text-center">
-                                 {userData ? (
-                                    <button className="btn btn-danger px-5 rounded-pill fw-bold shadow-sm" onClick={handleLogout}>LogOut</button>
-                                ) : (
-                                    <div className="d-flex flex-column gap-3 align-items-center">
-                                        <Link to='/login' className="btn btn-danger px-5 rounded-pill fw-bold shadow-sm w-75">Login</Link>
-                                        <Link to='/register' className="btn btn-outline-danger px-5 rounded-pill fw-bold w-75">Register</Link>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
+                    {/* Desktop Menu */}
+                    <div className="collapse navbar-collapse justify-content-center d-none d-lg-flex" id="navbarNav">
+                        {userData?.userType === "admin" ? adminNavItems : 
+                         userData?.userType === "user" ? userNavItems : 
+                         commonNavItems}
                     </div>
+
+                    {/* Desktop Auth Buttons */}
+                    <div className="d-none d-lg-flex align-items-center gap-2">
+                        {userData ? logoutButton : (
+                            <>
+                                <Link to='/register' className="btn btn-outline-danger btn-sm px-3 rounded-pill fw-bold">Register</Link>
+                                <Link to='/login' className="btn btn-danger btn-sm px-3 rounded-pill fw-bold shadow-sm">Login</Link>
+                            </>
+                        )}
+                    </div>
+                </div>
+            </div>
+
+            {/* Professional Mobile Side Menu (Offcanvas) */}
+            <div className="offcanvas offcanvas-end border-0 d-lg-none" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style={{ width: '280px' }}>
+                <div className="offcanvas-header border-bottom py-4">
+                    <h5 className="offcanvas-title fw-bold text-danger d-flex align-items-center" id="offcanvasNavbarLabel">
+                         <img src="favicon.png" alt="Logo" style={{ height: '28px' }} className="me-2" />
+                         QUIREX
+                    </h5>
+                    <button type="button" className="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div className="offcanvas-body p-4 d-flex flex-column">
+                    <div className="mobile-nav-links mb-4">
+                        <small className="text-muted text-uppercase fw-bold mb-3 d-block" style={{ letterSpacing: '1px' }}>Menu</small>
+                        {userData?.userType === "admin" ? adminNavItems : 
+                         userData?.userType === "user" ? userNavItems : 
+                         commonNavItems}
+                    </div>
+                    
+                    <div className="mt-auto border-top pt-4">
+                        <small className="text-muted text-uppercase fw-bold mb-3 d-block" style={{ letterSpacing: '1px' }}>Account</small>
+                         {userData ? (
+                            <button className="btn btn-danger w-100 rounded-pill fw-bold py-2 shadow-sm" onClick={handleLogout}>LogOut</button>
+                        ) : (
+                            <div className="d-grid gap-3">
+                                <Link to='/login' className="btn btn-danger rounded-pill fw-bold py-2 shadow-sm" data-bs-dismiss="offcanvas">Login</Link>
+                                <Link to='/register' className="btn btn-outline-danger rounded-pill fw-bold py-2" data-bs-dismiss="offcanvas">Register</Link>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
 
                     <div className="d-none d-lg-flex align-items-center gap-2">
                         {userData ? logoutButton : (
