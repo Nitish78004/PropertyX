@@ -50,6 +50,14 @@ const NavBar = ({ userData, handleLogout }) => {
         </ul>
     );
 
+    const sellerNavItems = (
+        <ul className="navbar-nav gap-1">
+            <li className="nav-item"><Link className={navLinkClass} to="/admin-add">Add Property</Link></li>
+            <li className="nav-item"><Link className={navLinkClass} to="/admin-list">My List</Link></li>
+            <li className="nav-item"><Link className={navLinkClass} to="/admin-profile">Profile</Link></li>
+        </ul>
+    );
+
     return (
         <nav className="navbar navbar-expand-lg fixed-top py-4 bg-transparent" style={{ zIndex: 1050 }}>
             <div className="container bg-white shadow rounded-pill px-4 py-2 floating-nav" 
@@ -78,6 +86,7 @@ const NavBar = ({ userData, handleLogout }) => {
                     {/* Desktop Menu */}
                     <div className="collapse navbar-collapse justify-content-center d-none d-lg-flex" id="navbarNav">
                         {userData?.userType === "admin" ? adminNavItems : 
+                         userData?.userType === "seller" ? sellerNavItems :
                          userData?.userType === "user" ? userNavItems : 
                          commonNavItems}
                     </div>
@@ -107,6 +116,7 @@ const NavBar = ({ userData, handleLogout }) => {
                     <div className="mobile-nav-links mb-4">
                         <small className="text-muted text-uppercase fw-bold mb-3 d-block" style={{ letterSpacing: '1px' }}>Menu</small>
                         {userData?.userType === "admin" ? adminNavItems : 
+                         userData?.userType === "seller" ? sellerNavItems :
                          userData?.userType === "user" ? userNavItems : 
                          commonNavItems}
                     </div>

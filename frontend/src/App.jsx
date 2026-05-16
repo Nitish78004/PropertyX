@@ -71,20 +71,24 @@ function App() {
           <Route path='/rentals' element={<AllRentals />} />
           <Route path='/sales' element={<AllSales />} />
 
-          {/* admin section */}
-          {userData?.userType === "admin" && (
+          {/* admin & seller section */}
+          {(userData?.userType === "admin" || userData?.userType === "seller") && (
             <>
               <Route path='/admin-add' element={<AddProperty />} />
               <Route path='/admin-list' element={<AdminPropertylist />} />
-              <Route path='/admin-sold' element={<AdminSoldProperty />} />
-              <Route path='/admin-user' element={<UserList />} />
+              {userData?.userType === "admin" && (
+                <>
+                  <Route path='/admin-sold' element={<AdminSoldProperty />} />
+                  <Route path='/admin-user' element={<UserList />} />
+                  <Route path='/admin-contact' element={<AdminContactUsList />} />
+                </>
+              )}
               <Route path='/admin-profile' element={<AdminProfile />} />
-              <Route path='/admin-contact' element={<AdminContactUsList />} />
               <Route path='/admin-logout' element={<AdminLogout />} />
             </>
           )}
 
-          {/* user section */}
+          {/* buyer/user section */}
           {userData?.userType === "user" && (
             <>
               <Route path='/user-property' element={<Property />} />

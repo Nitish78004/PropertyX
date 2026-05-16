@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 
 router.post('/user-register', async (req, res) => {
     try {
-        const { name, email, password, contact, address } = req.body;
+        const { name, email, password, contact, address, userType } = req.body;
         console.log("Register Request Body:", req.body); // Log body
         
         let profileName = "";
@@ -33,7 +33,7 @@ router.post('/user-register', async (req, res) => {
                 contact, 
                 address, 
                 profile: profileName,
-                userType: 'user'
+                userType: userType || 'user'
             });
             const result = await data.save();
             return res.json({ code: 200, message: "User registered successfully", data: result });

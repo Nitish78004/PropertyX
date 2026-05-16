@@ -21,7 +21,8 @@ const schema = yup.object().shape({
     contact: yup.string().required(),
     password: yup.string().required().min(8).max(20),
     address: yup.string().required(),
-    profile: yup.mixed().required()
+    profile: yup.mixed().required(),
+    userType: yup.string().required()
 });
 const UserRegister = () => {
     const { register, handleSubmit, formState: { errors },
@@ -40,6 +41,7 @@ const UserRegister = () => {
             formData.append('password', data.password);
             formData.append('address', data.address);
             formData.append('profile', data.profile[0]);
+            formData.append('userType', data.userType);
 
             const response = await axios.post(`${API_URL}/user-register`, formData, {
                 headers: {
@@ -129,6 +131,8 @@ const UserRegister = () => {
                                     </div>
                                     {errors.address && <p className="text-danger">{errors.address.message}</p>}
                                 </div>
+                            </div>
+                            <div className="row mb-4">
                                 <div className="col-md-6">
                                     <label className="form-label">Profile Picture</label>
                                     <div className="input-group">
@@ -136,6 +140,14 @@ const UserRegister = () => {
                                         <input type="file" {...register('profile')} className="form-control" />
                                     </div>
                                     {errors.profile && <p className="text-danger">{errors.profile.message}</p>}
+                                </div>
+                                <div className="col-md-6">
+                                    <label className="form-label">I am a...</label>
+                                    <select {...register('userType')} className="form-select">
+                                        <option value="user">Buyer (Wants to Buy)</option>
+                                        <option value="seller">Seller (Wants to Sell)</option>
+                                    </select>
+                                    {errors.userType && <p className="text-danger">{errors.userType.message}</p>}
                                 </div>
                             </div>
 
