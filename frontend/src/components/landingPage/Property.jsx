@@ -172,7 +172,32 @@ const Property = () => {
                                     </div>
                                     <div className="d-flex gap-2 mx-3 mb-3">
                                         <button onClick={() => handleEnquiry(item?.title)} className='btn btn-outline-danger flex-fill small'>Enquiry</button>
-                                        {location?.pathname !== 'property' && <button onClick={() => handleBuy(item?._id)} className='btn btn-danger flex-fill small'>Buy Now</button>}
+                                        {(() => {
+                                            const userData = JSON.parse(localStorage.getItem('userInfo'));
+                                            return (
+                                                <div className="d-flex justify-content-between align-items-center w-100">
+                                                    {userData?.userType === 'user' && (
+                                                        <button 
+                                                            className="btn btn-danger btn-sm px-4 rounded-pill fw-bold"
+                                                            onClick={() => handleBuy(item._id)}
+                                                        >
+                                                            Buy Now
+                                                        </button>
+                                                    )}
+                                                    {userData?.userType === 'seller' && (
+                                                        <span className="badge bg-secondary rounded-pill px-3 py-2 small">Seller Mode</span>
+                                                    )}
+                                                    {!userData && (
+                                                         <button 
+                                                            className="btn btn-danger btn-sm px-4 rounded-pill fw-bold"
+                                                            onClick={() => handleBuy(item._id)}
+                                                        >
+                                                            Buy Now
+                                                        </button>
+                                                    )}
+                                                </div>
+                                            );
+                                        })()}
                                     </div>
                                     <div className="card-footer bg-white d-flex justify-content-between align-items-center">
                                         <div className="d-flex align-items-center">
