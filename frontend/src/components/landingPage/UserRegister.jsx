@@ -46,13 +46,23 @@ const UserRegister = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            if (response.status === 200) {
+            if (response.data.code === 200) {
+                // Auto-login after registration
+                const userData = response.data.data;
+                localStorage.setItem('userInfo', JSON.stringify(userData));
+                
                 Swal.fire({
-                    title: "Registration Successful",
-                    text: response?.data?.message || "Successfully registered!",
-                    icon: "success"
+                    title: "Welcome to QUIREX!",
+                    text: `Hey ${userData.name}, you have registered successfully!`,
+                    icon: "success",
+                    timer: 2000,
+                    showConfirmButton: false
                 });
 
+                // Redirect to dashboard/properties
+                setTimeout(() => {
+                    window.location.href = '/user-property';
+                }, 2000);
             }
         } catch (error) {
             console.error('Registration error:', error);
@@ -60,7 +70,6 @@ const UserRegister = () => {
                 title: "Registration Failed",
                 text: error?.response?.data?.message || error?.message || "Registration failed",
                 icon: "error"
-
             });
         }
     };
