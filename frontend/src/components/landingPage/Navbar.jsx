@@ -124,17 +124,6 @@ const NavBar = ({ userData, handleLogout }) => {
                     </div>
                 </div>
             </div>
-
-                    <div className="d-none d-lg-flex align-items-center gap-2">
-                        {userData ? logoutButton : (
-                            <>
-                                <Link to='/register' className="btn btn-outline-danger btn-sm px-3 rounded-pill fw-bold">Register</Link>
-                                <Link to='/login' className="btn btn-danger btn-sm px-3 rounded-pill fw-bold shadow-sm">Login</Link>
-                            </>
-                        )}
-                    </div>
-                </div>
-            </div>
         </nav>
     );
 }
