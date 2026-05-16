@@ -55,41 +55,73 @@ const NavBar = ({ userData, handleLogout }) => {
             <div className="container bg-white shadow rounded-pill px-4 py-2 floating-nav" 
                  style={{ 
                     transition: 'all 0.3s ease',
-                    background: 'rgba(255, 255, 255, 0.95)',
+                    background: 'rgba(255, 255, 255, 0.98)',
                     backdropFilter: 'blur(15px)',
-                    border: '1px solid rgba(0,0,0,0.1)'
+                    border: '1px solid rgba(0,0,0,0.08)'
                  }}>
                 <div className="container-fluid d-flex align-items-center justify-content-between">
                     {brandLogo}
                     
-                    <button className="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                        <span className="navbar-toggler-icon"></span>
+                    {/* Professional Hamburger Icon for Mobile */}
+                    <button 
+                        className="navbar-toggler border-0 shadow-none d-lg-none p-2" 
+                        type="button" 
+                        data-bs-toggle="offcanvas" 
+                        data-bs-target="#offcanvasNavbar"
+                        aria-controls="offcanvasNavbar"
+                    >
+                        <div style={{ width: '24px', height: '2px', backgroundColor: '#dc3545', margin: '5px 0', borderRadius: '2px' }}></div>
+                        <div style={{ width: '18px', height: '2px', backgroundColor: '#dc3545', margin: '5px 0', borderRadius: '2px', marginLeft: '6px' }}></div>
+                        <div style={{ width: '24px', height: '2px', backgroundColor: '#dc3545', margin: '5px 0', borderRadius: '2px' }}></div>
                     </button>
 
-                    <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    {/* Desktop Menu */}
+                    <div className="collapse navbar-collapse justify-content-center d-none d-lg-flex" id="navbarNav">
                         {userData?.userType === "admin" ? adminNavItems : 
                          userData?.userType === "user" ? userNavItems : 
                          commonNavItems}
-                        
-                        {/* Mobile Only Buttons inside the collapse */}
-                        <div className="d-lg-none mt-3 pb-2 border-top pt-2">
-                             {userData ? (
-                                <button className="btn btn-danger w-100 rounded-pill fw-bold" onClick={handleLogout}>LogOut</button>
-                            ) : (
-                                <div className="d-grid gap-2">
-                                    <Link to='/login' className="btn btn-danger rounded-pill fw-bold">Login</Link>
-                                    <Link to='/register' className="btn btn-outline-danger rounded-pill fw-bold">Register</Link>
-                                </div>
-                            )}
-                        </div>
                     </div>
 
+                    {/* Desktop Auth Buttons */}
                     <div className="d-none d-lg-flex align-items-center gap-2">
                         {userData ? logoutButton : (
                             <>
                                 <Link to='/register' className="btn btn-outline-danger btn-sm px-3 rounded-pill fw-bold">Register</Link>
                                 <Link to='/login' className="btn btn-danger btn-sm px-3 rounded-pill fw-bold shadow-sm">Login</Link>
                             </>
+                        )}
+                    </div>
+                </div>
+            </div>
+
+            {/* Professional Mobile Sidebar (Offcanvas) */}
+            <div className="offcanvas offcanvas-end border-0" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style={{ width: '280px', borderRadius: '20px 0 0 20px' }}>
+                <div className="offcanvas-header border-bottom py-4 px-4">
+                    <h5 className="offcanvas-title fw-bold text-danger d-flex align-items-center" id="offcanvasNavbarLabel">
+                         <img src="favicon.png" alt="Logo" style={{ height: '28px' }} className="me-2" />
+                         QUIREX
+                    </h5>
+                    <button type="button" className="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div className="offcanvas-body p-4">
+                    <div className="mb-4">
+                        <small className="text-muted text-uppercase fw-bold letter-spacing-1 mb-3 d-block">Navigation</small>
+                        <div className="mobile-nav-links">
+                             {userData?.userType === "admin" ? adminNavItems : 
+                              userData?.userType === "user" ? userNavItems : 
+                              commonNavItems}
+                        </div>
+                    </div>
+                    
+                    <div className="mt-auto border-top pt-4">
+                         <small className="text-muted text-uppercase fw-bold letter-spacing-1 mb-3 d-block">Account</small>
+                         {userData ? (
+                            <button className="btn btn-danger w-100 rounded-pill fw-bold py-2 shadow-sm" onClick={handleLogout}>LogOut Account</button>
+                        ) : (
+                            <div className="d-grid gap-3">
+                                <Link to='/login' className="btn btn-danger rounded-pill fw-bold py-2 shadow-sm" data-bs-dismiss="offcanvas">Login</Link>
+                                <Link to='/register' className="btn btn-outline-danger rounded-pill fw-bold py-2" data-bs-dismiss="offcanvas">Create Account</Link>
+                            </div>
                         )}
                     </div>
                 </div>

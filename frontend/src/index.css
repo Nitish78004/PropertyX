@@ -97,3 +97,18 @@ img {
         font-size: 1.5rem !important;
     }
 }
+
+/* Mobile Nav Styles */
+.mobile-nav-links .navbar-nav {
+    flex-direction: column !important;
+}
+
+.mobile-nav-links .nav-link {
+    font-size: 1.1rem;
+    padding: 12px 0 !important;
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+}
+
+.letter-spacing-1 {
+    letter-spacing: 1.5px;
+}
