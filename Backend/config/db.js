@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 export const dbConnect = async () => {
     try {
-        const con = await mongoose.connect('mongodb+srv://nknitishsingh92_db_user:Nitish780045@clusterone.7zg3loj.mongodb.net/')
+        const con = await mongoose.connect(process.env.MONGO_URI || 'mongodb+srv://nknitishsingh92_db_user:Shakuntala9838@cluster0.irzp77x.mongodb.net/?appName=Cluster0')
         if (con) {
             console.log("Db connected sucessfully to remote DB.........")
         }
