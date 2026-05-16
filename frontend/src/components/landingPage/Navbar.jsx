@@ -84,6 +84,7 @@ const NavBar = ({ userData, handleLogout }) => {
                     </div>
                 )}
             </div>
+            </div>
         </div>
     );
 }
