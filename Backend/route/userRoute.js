@@ -1,35 +1,48 @@
 import express from 'express';
 import { buyerModel, propertyModel, userModel, contactUsModel, reviewModel } from '../model/table.js';
 import { sendContactEmail } from '../config/mailer.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 const router = express.Router();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 router.post('/user-register', async (req, res) => {
     try {
         const { name, email, password, contact, address } = req.body;
+        console.log("Register Request Body:", req.body); // Log body
+        
         let profileName = "";
         if (req.files && req.files.profile) {
             const { profile } = req.files;
-            profileName = profile.name;
-            await new Promise((resolve, reject) => {
-                profile.mv("uploads/" + profile.name, (err) => {
-                    if (err) return reject(err);
-                    resolve();
-                });
-            });
+            profileName = Date.now() + "_" + profile.name; // Unique name
+            const uploadPath = path.join(__dirname, '../uploads/', profileName);
+            
+            await profile.mv(uploadPath);
         }
+
         const isExist = await userModel.findOne({ email });
         if (isExist) {
-            return res.json({ code: 400, message: "User already exists", data: "" });
+            return res.status(400).json({ code: 400, message: "User already exists", data: "" });
         } else {
-            const data = new userModel({ name, email, password, contact, address, profile: profileName });
+            const data = new userModel({ 
+                name, 
+                email, 
+                password, 
+                contact, 
+                address, 
+                profile: profileName,
+                userType: 'user'
+            });
             const result = await data.save();
             return res.json({ code: 200, message: "User registered successfully", data: result });
         }
     } catch (err) {
-        console.error("Registration Error Details:", err);
+        console.error("Registration Error:", err);
         return res.status(500).json({ 
             code: 500, 
-            message: "Internal server error: " + err.message, 
+            message: "Internal server error: " + (err.message || "Unknown error"), 
             data: "" 
         });
     }
