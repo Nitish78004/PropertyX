@@ -9,7 +9,9 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import axios from 'axios';
-import Swal from 'sweetalert2';
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from 'react-router-dom';
 
 const schema = yup.object().shape({
     name: yup.string().required(),
@@ -126,8 +128,32 @@ const UserRegister = () => {
                                 </div>
                             </div>
 
-                            <div className="text-center">
-                                <button type="submit" className="btn btn-outline-danger px-4">Register</button>
+                            <div className="text-center mt-4">
+                                <button type="submit" className="btn btn-outline-danger px-5 rounded-pill fw-bold">Register Now</button>
+                            </div>
+
+                            <div className="text-center my-3">
+                                <span className="text-muted">OR</span>
+                            </div>
+
+                            <div className="d-flex justify-content-center">
+                                <GoogleLogin
+                                    onSuccess={credentialResponse => {
+                                        const decoded = jwtDecode(credentialResponse.credential);
+                                        const mockUser = {
+                                            _id: "google_" + decoded.sub,
+                                            name: decoded.name,
+                                            email: decoded.email,
+                                            userType: "user"
+                                        };
+                                        localStorage.setItem('userInfo', JSON.stringify(mockUser));
+                                        // Swal.fire("Success", `Welcome ${decoded.name}!`, "success");
+                                        window.location.href = '/user-property';
+                                    }}
+                                    onError={() => {
+                                        console.log('Login Failed');
+                                    }}
+                                />
                             </div>
                         </form>
                     </div>

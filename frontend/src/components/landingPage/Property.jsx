@@ -79,6 +79,20 @@ const Property = () => {
     }
     const handleBuy = async (propertyId) => {
         const userData = JSON.parse(localStorage.getItem('userInfo'));
+        if (!userData) {
+            Swal.fire({
+                title: "Login Required",
+                text: "Please login to buy properties.",
+                icon: "info",
+                showCancelButton: true,
+                confirmButtonText: 'Login'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login');
+                }
+            });
+            return;
+        }
         const response = await axios.post('http://localhost:5000/api/buy', { userId: userData?._id, propertyId });
 
         console.log(response)
