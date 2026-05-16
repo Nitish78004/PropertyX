@@ -36,7 +36,7 @@ const Services = () => {
                     <div className="row g-4">
                         {services.map((item, index) => (
                             <div key={index} className="col-md-4" data-aos="fade-up" data-aos-delay={index * 100}>
-                                <div className="p-4 shadow-sm bg-white rounded-3 h-100 focus-card border-bottom-hover services">
+                                <div className="p-4 shadow-sm rounded-3 h-100 focus-card border-bottom-hover services" style={{ background: 'rgba(255,255,255,0.3)', border: '1px solid rgba(0,0,0,0.05)' }}>
                                     <div className="mb-3">
                                         <img
                                             src={item.img}

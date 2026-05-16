@@ -63,13 +63,16 @@ const Testimonial = () => {
 
                 {/* Submit Review Form */}
                 <div className="row justify-content-center mt-5">
-                    <div className="col-md-6 bg-light p-4 rounded-4 shadow-sm" data-aos="zoom-in">
+                    <div className="col-md-6 p-4 rounded-4 shadow-sm" 
+                         style={{ background: 'rgba(255, 255, 255, 0.4)', backdropFilter: 'blur(5px)', border: '1px solid rgba(0,0,0,0.05)' }} 
+                         data-aos="zoom-in">
                         <h4 className="fw-bold text-center mb-4">Write a Review</h4>
                         <form onSubmit={handleSubmit}>
                             <div className="mb-3">
                                 <input 
                                     type="text" 
                                     className="form-control rounded-pill border-0 px-4 py-2 shadow-sm" 
+                                    style={{ background: 'rgba(255,255,255,0.8)' }}
                                     placeholder="Your Name" 
                                     value={formData.name}
                                     onChange={(e) => setFormData({...formData, name: e.target.value})}
@@ -79,6 +82,7 @@ const Testimonial = () => {
                             <div className="mb-3">
                                 <textarea 
                                     className="form-control rounded-4 border-0 px-4 py-2 shadow-sm" 
+                                    style={{ background: 'rgba(255,255,255,0.8)' }}
                                     rows="3" 
                                     placeholder="Your Feedback" 
                                     value={formData.feedback}

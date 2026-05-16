@@ -26,7 +26,7 @@ const OurAmenities = () => {
                 <div className="row g-4">
                     {amenities.map((item, index) => (
                         <div className="col-sm-6 col-md-4 col-lg-3" key={index} data-aos="zoom-in" data-aos-delay={index * 50}>
-                            <div className="border rounded shadow-sm p-4 h-100 amenities">
+                            <div className="rounded shadow-sm p-4 h-100 amenities" style={{ background: 'rgba(255,255,255,0.3)', border: '1px solid rgba(0,0,0,0.05)' }}>
                                 <div className="fs-1 mb-3 text-danger rounded-circle"
                                     style={{ backgroundColor: '#fdf1f0', borderRadius: '50%' }}>{item.icon}</div>
                                 <h5 className="fw-semibold">{item.title}</h5>
