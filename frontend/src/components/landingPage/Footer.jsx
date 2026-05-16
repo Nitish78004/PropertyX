@@ -16,22 +16,44 @@ const Footer = () => {
                 <div className="container">
                     <div className="row text-start">
 
-                        {/* Logo & Contact Info */}
+                        {/* Top Large Contact Section */}
+                        <div className="col-12 mb-5">
+                            <div className="row g-4 text-center">
+                                <div className="col-md-4" data-aos="fade-up">
+                                    <div className="p-4 rounded-4 bg-secondary bg-opacity-10 h-100">
+                                        <BsEnvelope className="fs-1 text-danger mb-3" />
+                                        <h5 className="fw-bold">Email Us</h5>
+                                        <p className="mb-0 text-muted">nknitishsingh91@gmail.com</p>
+                                    </div>
+                                </div>
+                                <div className="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                                    <div className="p-4 rounded-4 bg-secondary bg-opacity-10 h-100">
+                                        <BsGeoAlt className="fs-1 text-danger mb-3" />
+                                        <h5 className="fw-bold">Our Location</h5>
+                                        <p className="mb-0 text-muted">Uttar Pradesh, India</p>
+                                    </div>
+                                </div>
+                                <div className="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                                    <div className="p-4 rounded-4 bg-secondary bg-opacity-10 h-100">
+                                        <BsTelephoneInbound className="fs-1 text-danger mb-3" />
+                                        <h5 className="fw-bold">Call Us</h5>
+                                        <p className="mb-0 text-muted">+91 780045XXXX</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Logo & About */}
                         <div className="col-md-3 mb-4">
-                            <h4 className="text-danger mb-2">
-                                <i className="me-2"><LuHouse /></i>Quirex
+                            <h4 className="text-danger mb-3 fw-bold">
+                                <LuHouse className="me-2" />PropertyX
                             </h4>
-                            <p>Lorem Ipsum is simply dummy text of the typesetting industry.</p>
-                            <ul className="list-unstyled small">
-                                <li><BsGeoAlt /> Uttar Pradesh, India</li>
-                                <li><BsTelephoneInbound /> +91 780045XXXX</li>
-                                <li><BsEnvelope /> nknitishsingh91@gmail.com</li>
-                            </ul>
-                            <div className="d-flex gap-3 mt-3">
-                                <SlSocialFacebook />
-                                <CiTwitter />
-                                <CiLinkedin />
-                                <FiYoutube />
+                            <p className="text-muted small">Your trusted partner in finding the perfect home. We provide premium real estate services tailored to your needs.</p>
+                            <div className="d-flex gap-3 mt-4">
+                                <a href="#" className="btn btn-outline-light btn-sm rounded-circle"><SlSocialFacebook /></a>
+                                <a href="#" className="btn btn-outline-light btn-sm rounded-circle"><CiTwitter /></a>
+                                <a href="#" className="btn btn-outline-light btn-sm rounded-circle"><CiLinkedin /></a>
+                                <a href="#" className="btn btn-outline-light btn-sm rounded-circle"><FiYoutube /></a>
                             </div>
                         </div>
 

@@ -56,7 +56,7 @@ function App() {
   return (
     <>
       <NavBar userData={userData} handleLogout={handleLogout} />
-      <div style={{ paddingTop: '120px' }}>
+      <div style={{ paddingTop: '80px' }}>
         <Routes>
           {/* landing page router */}
           <Route path='/' element={<Home />} />
