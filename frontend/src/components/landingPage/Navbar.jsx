@@ -46,8 +46,9 @@ const NavBar = ({ userData, handleLogout }) => {
     );
 
     return (
-        <div className="container mt-3 sticky-top" style={{ zIndex: 1050 }}>
-            <nav className="navbar navbar-expand-lg bg-white shadow rounded-pill py-2 px-4 floating-nav" style={{ transition: 'all 0.3s ease' }}>
+        <div className="fixed-top w-100" style={{ zIndex: 1050 }}>
+            <div className="container mt-3">
+                <nav className="navbar navbar-expand-lg bg-white shadow rounded-pill py-2 px-4 floating-nav" style={{ transition: 'all 0.3s ease' }}>
                 <div className="container-fluid">
                     {brandLogo}
                     

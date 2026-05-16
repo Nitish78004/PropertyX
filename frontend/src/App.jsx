@@ -57,39 +57,41 @@ function App() {
     <>
       <TopNavbar />
       <NavBar userData={userData} handleLogout={handleLogout} />
-      <Routes>
-        {/* landing page router */}
-        <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/services' element={<Services />} />
-        <Route path='/property' element={<Property />} />
-        <Route path='/register' element={<UserRegister />} />
-        <Route path='/login' element={<Login />} />
+      <div style={{ paddingTop: '100px' }}>
+        <Routes>
+          {/* landing page router */}
+          <Route path='/' element={<Home />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/services' element={<Services />} />
+          <Route path='/property' element={<Property />} />
+          <Route path='/register' element={<UserRegister />} />
+          <Route path='/login' element={<Login />} />
 
-        {/* admin section */}
-        {userData?.userType === "admin" && (
-          <>
-            <Route path='/admin-add' element={<AddProperty />} />
-            <Route path='/admin-list' element={<AdminPropertylist />} />
-            <Route path='/admin-sold' element={<AdminSoldProperty />} />
-            <Route path='/admin-user' element={<UserList />} />
-            <Route path='/admin-profile' element={<AdminProfile />} />
-            <Route path='/admin-contact' element={<AdminContactUsList />} />
-            <Route path='/admin-logout' element={<AdminLogout />} />
-          </>
-        )}
+          {/* admin section */}
+          {userData?.userType === "admin" && (
+            <>
+              <Route path='/admin-add' element={<AddProperty />} />
+              <Route path='/admin-list' element={<AdminPropertylist />} />
+              <Route path='/admin-sold' element={<AdminSoldProperty />} />
+              <Route path='/admin-user' element={<UserList />} />
+              <Route path='/admin-profile' element={<AdminProfile />} />
+              <Route path='/admin-contact' element={<AdminContactUsList />} />
+              <Route path='/admin-logout' element={<AdminLogout />} />
+            </>
+          )}
 
-        {/* user section */}
-        {userData?.userType === "user" && (
-          <>
-            <Route path='/user-property' element={<Property />} />
-            <Route path='/user-bought' element={<UserBoughtList />} />
-            <Route path='/user-profile' element={<UserProfile />} />
-            <Route path='/user-logout' element={<UserLogout />} />
-          </>
-        )}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          {/* user section */}
+          {userData?.userType === "user" && (
+            <>
+              <Route path='/user-property' element={<Property />} />
+              <Route path='/user-bought' element={<UserBoughtList />} />
+              <Route path='/user-profile' element={<UserProfile />} />
+              <Route path='/user-logout' element={<UserLogout />} />
+            </>
+          )}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
       <Footer />
     </>
   )
