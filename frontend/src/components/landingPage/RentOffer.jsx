@@ -72,7 +72,7 @@ const RentOffer = () => {
                     <div key={i} className="col-md-4 mb-4" data-aos="fade-up" data-aos-delay={i * 100}>
                         <div className="card shadow-sm border-0 h-100 property-card-mini">
                             <img
-                                src={item.img}
+                                src={`/${item.img}`}
                                 alt={item.title}
                                 className="card-img-top"
                                 style={{ height: "180px", objectFit: "cover" }}

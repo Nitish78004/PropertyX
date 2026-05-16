@@ -9,7 +9,7 @@ import { FaDribbble } from "react-icons/fa6";
 const NavBar = ({ userData, handleLogout }) => {
     const brandLogo = (
         <Link to="/" className="navbar-brand text-danger fw-bold d-flex align-items-center">
-            <img src="favicon.png" alt="Logo" style={{ height: '28px' }} className="me-2" />
+            <img src="/favicon.png" alt="Logo" style={{ height: '28px' }} className="me-2" />
             <span style={{ fontSize: '1.2rem', letterSpacing: '1px' }}>QUIREX</span>
         </Link>
     );
@@ -98,7 +98,7 @@ const NavBar = ({ userData, handleLogout }) => {
             <div className="offcanvas offcanvas-end border-0 d-lg-none" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style={{ width: '280px' }}>
                 <div className="offcanvas-header border-bottom py-4">
                     <h5 className="offcanvas-title fw-bold text-danger d-flex align-items-center" id="offcanvasNavbarLabel">
-                         <img src="favicon.png" alt="Logo" style={{ height: '28px' }} className="me-2" />
+                         <img src="/favicon.png" alt="Logo" style={{ height: '28px' }} className="me-2" />
                          QUIREX
                     </h5>
                     <button type="button" className="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
