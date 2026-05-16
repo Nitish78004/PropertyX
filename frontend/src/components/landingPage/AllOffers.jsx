@@ -4,15 +4,29 @@ import { BsFillGeoAltFill, BsHouseDoor, BsTagFill } from "react-icons/bs";
 import { CiDroplet } from "react-icons/ci";
 import { BiFullscreen } from "react-icons/bi";
 
+const fallbackOffers = [
+    { title: 'Skyline Luxury Flat', price: '$4,500', location: 'Dubai, UAE', pic: 'rent1.webp', beds: 3, baths: 3, area: 2500, label: 'HOT DEAL', desc: 'Exclusive offer on this high-floor luxury flat with Burj Khalifa views.' },
+    { title: 'Palm Jumeirah Villa', price: '$15,000', location: 'Dubai, UAE', pic: 'rent4.jpg', beds: 5, baths: 5, area: 6000, label: 'PREMIUM', desc: 'Once-in-a-lifetime opportunity to own a beachfront villa on the Palm.' },
+    { title: 'Modern Desert Oasis', price: '$3,800', location: 'Abu Dhabi, UAE', pic: 'rent3.jpg', beds: 4, baths: 4, area: 4200, label: 'DISCOUNTED', desc: 'Spacious desert home with a private pool and modern architecture.' },
+    { title: 'Marina View Condo', price: '$2,800', location: 'Dubai, UAE', pic: 'rent2.jpg', beds: 2, baths: 2, area: 1500, label: 'LIMITED', desc: 'Perfect investment property with high rental yields in Dubai Marina.' },
+    { title: 'Sustainable Eco-Home', price: '$1,100,000', location: 'London, UK', pic: 'rent8.jpg', beds: 4, baths: 3, area: 3000, label: 'NEW LAUNCH', desc: 'Future-proof living with zero-carbon footprint and smart technology.' },
+    { title: 'Historic Townhouse', price: '$2,500,000', location: 'Paris, France', pic: 'rent6.webp', beds: 6, baths: 4, area: 5200, label: 'OFFER', desc: 'Magnificent townhouse in the heart of Paris with classic features.' }
+];
+
 const AllOffers = () => {
     const [listData, setListData] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get('http://localhost:5000/api/property-list');
-            if (response?.data?.code === 200) {
-                // For "Offers", we can show properties with special labels or just the most recent ones
-                setListData(response?.data?.data);
+            try {
+                const response = await axios.get('http://localhost:5000/api/property-list');
+                if (response?.data?.code === 200 && response.data.data.length > 0) {
+                    setListData(response?.data?.data);
+                } else {
+                    setListData(fallbackOffers);
+                }
+            } catch (error) {
+                setListData(fallbackOffers);
             }
         };
         fetchData();
@@ -32,7 +46,13 @@ const AllOffers = () => {
                         <div key={i} className="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay={i * 100}>
                             <div className="card h-100 shadow-sm border-0 property">
                                 <div className="position-relative">
-                                    <img src={`http://localhost:5000/img/${item?.pic}`} className="card-img-top" alt={item.title} style={{height: '200px', objectFit: 'cover'}} />
+                                    <img 
+                                        src={item.pic.startsWith('http') || item.pic.includes('.') ? item.pic : `http://localhost:5000/img/${item?.pic}`} 
+                                        className="card-img-top" 
+                                        alt={item.title} 
+                                        style={{height: '200px', objectFit: 'cover'}} 
+                                        onError={(e) => { e.target.src = 'house2.webp' }}
+                                    />
                                     <div className="position-absolute top-0 start-0 m-2">
                                         <span className="badge bg-danger"><BsTagFill className="me-1"/>HOT DEAL</span>
                                     </div>
