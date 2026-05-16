@@ -23,8 +23,8 @@ const Footer = () => {
                                     <a href="mailto:nknitishsingh91@gmail.com" className="text-decoration-none h-100 d-block">
                                         <div className="p-4 rounded-4 bg-secondary bg-opacity-10 h-100 hover-danger transition-all">
                                             <BsEnvelope className="fs-1 text-danger mb-3" />
-                                            <h5 className="fw-bold text-dark">Email Us</h5>
-                                            <p className="mb-0 text-muted">nknitishsingh91@gmail.com</p>
+                                            <h5 className="fw-bold text-white">Email Us</h5>
+                                            <p className="mb-0 text-light opacity-75">nknitishsingh91@gmail.com</p>
                                         </div>
                                     </a>
                                 </div>
@@ -32,8 +32,8 @@ const Footer = () => {
                                     <a href="https://maps.google.com/?q=Uttar+Pradesh,+India" target="_blank" rel="noopener noreferrer" className="text-decoration-none h-100 d-block">
                                         <div className="p-4 rounded-4 bg-secondary bg-opacity-10 h-100 hover-danger transition-all">
                                             <BsGeoAlt className="fs-1 text-danger mb-3" />
-                                            <h5 className="fw-bold text-dark">Our Location</h5>
-                                            <p className="mb-0 text-muted">Uttar Pradesh, India</p>
+                                            <h5 className="fw-bold text-white">Our Location</h5>
+                                            <p className="mb-0 text-light opacity-75">Uttar Pradesh, India</p>
                                         </div>
                                     </a>
                                 </div>
@@ -41,8 +41,8 @@ const Footer = () => {
                                     <a href="tel:+917800450000" className="text-decoration-none h-100 d-block">
                                         <div className="p-4 rounded-4 bg-secondary bg-opacity-10 h-100 hover-danger transition-all">
                                             <BsTelephoneInbound className="fs-1 text-danger mb-3" />
-                                            <h5 className="fw-bold text-dark">Call Us</h5>
-                                            <p className="mb-0 text-muted">+91 780045XXXX</p>
+                                            <h5 className="fw-bold text-white">Call Us</h5>
+                                            <p className="mb-0 text-light opacity-75">+91 780045XXXX</p>
                                         </div>
                                     </a>
                                 </div>
