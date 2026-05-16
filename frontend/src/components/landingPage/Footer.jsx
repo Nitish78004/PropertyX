@@ -20,25 +20,31 @@ const Footer = () => {
                         <div className="col-12 mb-5">
                             <div className="row g-4 text-center">
                                 <div className="col-md-4" data-aos="fade-up">
-                                    <div className="p-4 rounded-4 bg-secondary bg-opacity-10 h-100">
-                                        <BsEnvelope className="fs-1 text-danger mb-3" />
-                                        <h5 className="fw-bold">Email Us</h5>
-                                        <p className="mb-0 text-muted">nknitishsingh91@gmail.com</p>
-                                    </div>
+                                    <a href="mailto:nknitishsingh91@gmail.com" className="text-decoration-none h-100 d-block">
+                                        <div className="p-4 rounded-4 bg-secondary bg-opacity-10 h-100 hover-danger transition-all">
+                                            <BsEnvelope className="fs-1 text-danger mb-3" />
+                                            <h5 className="fw-bold text-dark">Email Us</h5>
+                                            <p className="mb-0 text-muted">nknitishsingh91@gmail.com</p>
+                                        </div>
+                                    </a>
                                 </div>
                                 <div className="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                                    <div className="p-4 rounded-4 bg-secondary bg-opacity-10 h-100">
-                                        <BsGeoAlt className="fs-1 text-danger mb-3" />
-                                        <h5 className="fw-bold">Our Location</h5>
-                                        <p className="mb-0 text-muted">Uttar Pradesh, India</p>
-                                    </div>
+                                    <a href="https://maps.google.com/?q=Uttar+Pradesh,+India" target="_blank" rel="noopener noreferrer" className="text-decoration-none h-100 d-block">
+                                        <div className="p-4 rounded-4 bg-secondary bg-opacity-10 h-100 hover-danger transition-all">
+                                            <BsGeoAlt className="fs-1 text-danger mb-3" />
+                                            <h5 className="fw-bold text-dark">Our Location</h5>
+                                            <p className="mb-0 text-muted">Uttar Pradesh, India</p>
+                                        </div>
+                                    </a>
                                 </div>
                                 <div className="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                                    <div className="p-4 rounded-4 bg-secondary bg-opacity-10 h-100">
-                                        <BsTelephoneInbound className="fs-1 text-danger mb-3" />
-                                        <h5 className="fw-bold">Call Us</h5>
-                                        <p className="mb-0 text-muted">+91 780045XXXX</p>
-                                    </div>
+                                    <a href="tel:+917800450000" className="text-decoration-none h-100 d-block">
+                                        <div className="p-4 rounded-4 bg-secondary bg-opacity-10 h-100 hover-danger transition-all">
+                                            <BsTelephoneInbound className="fs-1 text-danger mb-3" />
+                                            <h5 className="fw-bold text-dark">Call Us</h5>
+                                            <p className="mb-0 text-muted">+91 780045XXXX</p>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
