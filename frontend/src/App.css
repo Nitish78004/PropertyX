@@ -1,0 +1,77 @@
+body {
+    overflow-x: hidden !important;
+}
+
+.hover-shadow {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+}
+
+.hover-shadow:hover {
+    transform: translatey(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.services {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+}
+
+.services:hover {
+    transform: translatey(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.bought {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+}
+
+.bought:hover {
+    transform: translatey(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.area-property {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+}
+
+.area-property:hover {
+    transform: translatey(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.property {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+}
+
+.property:hover {
+    transform: translatey(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.animities {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+}
+
+.animities:hover {
+    transform: translatey(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.testnomial {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+}
+
+.testnomial:hover {
+    transform: translatey(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.home {
+    transition: 0.5 ease;
+}
