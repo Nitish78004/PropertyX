@@ -97,6 +97,33 @@ const Property = () => {
         }
 
     }
+    const handleEnquiry = async (propertyTitle) => {
+        const { value: text } = await Swal.fire({
+            input: "textarea",
+            inputLabel: `Enquiry for ${propertyTitle}`,
+            inputPlaceholder: "Type your message here...",
+            inputAttributes: {
+                "aria-label": "Type your message here"
+            },
+            showCancelButton: true
+        });
+        if (text) {
+            try {
+                const userData = JSON.parse(localStorage.getItem('userInfo'));
+                await axios.post('http://localhost:5000/api/add-contact-us', {
+                    name: userData?.name || "Interested User",
+                    email: userData?.email || "No Email Provided",
+                    contact: userData?.contact || "No Contact Provided",
+                    subject: `Enquiry for ${propertyTitle}`,
+                    message: text
+                });
+                Swal.fire("Sent!", "Your enquiry has been sent to the agent.", "success");
+            } catch (error) {
+                Swal.fire("Error", "Failed to send enquiry.", "error");
+            }
+        }
+    }
+
     return (
         <>
 
@@ -130,7 +157,10 @@ const Property = () => {
                                             <div><BiFullscreen />{item.area} sqft</div>
                                         </div>
                                     </div>
-                                    {location?.pathname !== 'property' && <button onClick={() => handleBuy(item?._id)} className='btn btn-danger mx-3 mb-2'>Buy Now</button>}
+                                    <div className="d-flex gap-2 mx-3 mb-3">
+                                        <button onClick={() => handleEnquiry(item?.title)} className='btn btn-outline-danger flex-fill small'>Enquiry</button>
+                                        {location?.pathname !== 'property' && <button onClick={() => handleBuy(item?._id)} className='btn btn-danger flex-fill small'>Buy Now</button>}
+                                    </div>
                                     <div className="card-footer bg-white d-flex justify-content-between align-items-center">
                                         <div className="d-flex align-items-center">
                                             <img
