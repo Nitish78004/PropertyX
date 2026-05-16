@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import API_URL from '../../config';
 
 const Testimonial = () => {
     const [reviews, setReviews] = useState([]);
@@ -11,7 +12,7 @@ const Testimonial = () => {
     }, []);
 
     const fetchReviews = async () => {
-        const res = await axios.get('http://localhost:5000/api/get-reviews');
+        const res = await axios.get(`${API_URL}/get-reviews`);
         if (res.data?.code === 200) {
             setReviews(res.data.data);
         }
@@ -19,7 +20,7 @@ const Testimonial = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await axios.post('http://localhost:5000/api/add-review', {
+        const res = await axios.post(`${API_URL}/add-review`, {
             ...formData,
             image: `https://randomuser.me/api/portraits/men/${Math.floor(Math.random() * 50)}.jpg`
         });

@@ -9,9 +9,11 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from 'react-router-dom';
+import API_URL from '../../config';
 
 const schema = yup.object().shape({
     name: yup.string().required(),
@@ -39,7 +41,7 @@ const UserRegister = () => {
             formData.append('address', data.address);
             formData.append('profile', data.profile[0]);
 
-            const response = await axios.post('http://localhost:5000/api/user-register', formData, {
+            const response = await axios.post(`${API_URL}/user-register`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

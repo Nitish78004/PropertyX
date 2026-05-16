@@ -55,9 +55,9 @@ const NavBar = ({ userData, handleLogout }) => {
             <div className="container bg-white shadow rounded-pill px-4 py-2 floating-nav" 
                  style={{ 
                     transition: 'all 0.3s ease',
-                    background: 'rgba(255, 255, 255, 0.9)',
+                    background: 'rgba(255, 255, 255, 0.95)',
                     backdropFilter: 'blur(15px)',
-                    border: '1px solid rgba(255, 255, 255, 0.3)'
+                    border: '1px solid rgba(0,0,0,0.1)'
                  }}>
                 <div className="container-fluid d-flex align-items-center justify-content-between">
                     {brandLogo}
@@ -70,6 +70,18 @@ const NavBar = ({ userData, handleLogout }) => {
                         {userData?.userType === "admin" ? adminNavItems : 
                          userData?.userType === "user" ? userNavItems : 
                          commonNavItems}
+                        
+                        {/* Mobile Only Buttons inside the collapse */}
+                        <div className="d-lg-none mt-3 pb-2 border-top pt-2">
+                             {userData ? (
+                                <button className="btn btn-danger w-100 rounded-pill fw-bold" onClick={handleLogout}>LogOut</button>
+                            ) : (
+                                <div className="d-grid gap-2">
+                                    <Link to='/login' className="btn btn-danger rounded-pill fw-bold">Login</Link>
+                                    <Link to='/register' className="btn btn-outline-danger rounded-pill fw-bold">Register</Link>
+                                </div>
+                            )}
+                        </div>
                     </div>
 
                     <div className="d-none d-lg-flex align-items-center gap-2">
@@ -80,19 +92,6 @@ const NavBar = ({ userData, handleLogout }) => {
                             </>
                         )}
                     </div>
-                </div>
-
-                {/* Mobile Menu Integration */}
-                <div className="collapse navbar-collapse d-lg-none" id="navbarNav">
-                    <hr className="my-2" />
-                    {userData ? (
-                        <button className="btn btn-danger w-100 rounded-pill fw-bold mb-2" onClick={handleLogout}>LogOut</button>
-                    ) : (
-                        <div className="d-grid gap-2 mb-2">
-                            <Link to='/login' className="btn btn-danger rounded-pill fw-bold">Login</Link>
-                            <Link to='/register' className="btn btn-outline-danger rounded-pill fw-bold">Register</Link>
-                        </div>
-                    )}
                 </div>
             </div>
         </nav>

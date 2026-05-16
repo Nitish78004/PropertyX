@@ -13,10 +13,15 @@ import xss from "xss-clean";
 import hpp from "hpp";
 
 const app = express();
+app.use(cors()) // Move to top
+app.use(express.json({ limit: '10kb' })); 
+app.use(fileUpload());
 
-// 1. Security HTTP Headers
+// 1. Security HTTP Headers - Relaxed for local dev
 app.use(helmet({
-    crossOriginResourcePolicy: false, // For local image serving
+    crossOriginResourcePolicy: false,
+    crossOriginEmbedderPolicy: false,
+    contentSecurityPolicy: false, 
 }));
 
 // 2. Data Sanitization against NoSQL Query Injection
@@ -36,9 +41,6 @@ const limiter = rateLimit({
 });
 app.use("/api", limiter);
 
-app.use(express.json({ limit: '10kb' })); // Limit body size
-app.use(fileUpload());
-app.use(cors())
 const PORT = 5000;
 dbConnect()
 app.use('/img', express.static('uploads'))

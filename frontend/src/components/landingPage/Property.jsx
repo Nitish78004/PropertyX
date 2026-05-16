@@ -10,7 +10,8 @@ import { BsClockHistory } from "react-icons/bs";
 
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import API_URL, { IMAGE_URL } from '../../config';
 
 const listings = [
     {
@@ -63,19 +64,17 @@ const listings = [
 
 const Property = () => {
     const location = useLocation()
+    const navigate = useNavigate()
     const [listData, setListData] = useState([])
     useEffect(() => {
         fetchData()
     }, [])
 
     const fetchData = async () => {
-
-        const response = await axios.get('http://localhost:5000/api/property-list');
+        const response = await axios.get(`${API_URL}/property-list`);
         if (response?.data?.code == 200) {
             setListData(response?.data?.data)
-            console.log(listData)
         }
-
     }
     const handleBuy = async (propertyId) => {
         const userData = JSON.parse(localStorage.getItem('userInfo'));
@@ -93,7 +92,7 @@ const Property = () => {
             });
             return;
         }
-        const response = await axios.post('http://localhost:5000/api/buy', { userId: userData?._id, propertyId });
+        const response = await axios.post(`${API_URL}/buy`, { userId: userData?._id, propertyId });
 
         console.log(response)
         if (response?.data?.code == 200) {
@@ -124,7 +123,7 @@ const Property = () => {
         if (text) {
             try {
                 const userData = JSON.parse(localStorage.getItem('userInfo'));
-                await axios.post('http://localhost:5000/api/add-contact-us', {
+                await axios.post(`${API_URL}/add-contact-us`, {
                     name: userData?.name || "Interested User",
                     email: userData?.email || "No Email Provided",
                     contact: userData?.contact || "No Contact Provided",
@@ -152,7 +151,7 @@ const Property = () => {
                             <div key={i} className="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay={i * 100}>
                                 <div className="card h-100 shadow-sm border-0 property">
                                     <div className="position-relative">
-                                        <img src={`http://localhost:5000/img/${item?.pic}`} className="card-img-top" alt={item.title} />
+                                        <img src={`${IMAGE_URL}/${item?.pic}`} className="card-img-top" alt={item.title} />
 
 
                                         <span className="badge bg-success position-absolute top-0 end-0 m-2">{item.label}</span>

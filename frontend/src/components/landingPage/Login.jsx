@@ -10,6 +10,8 @@ import { useNavigate, Link } from 'react-router-dom'
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
 
+import API_URL from '../../config';
+
 const schema = yup.object().shape({
     email: yup.string().email("Invalid email").required("Email is required"),
     password: yup.string().required().min(8).max(20)
@@ -20,7 +22,7 @@ const Login = () => {
         resolver: yupResolver(schema),
     });
     const handleLogin = async (data) => {
-        const response = await axios.post('http://localhost:5000/api/login', data)
+        const response = await axios.post(`${API_URL}/login`, data)
         if (response?.data?.code == 200) {
             Swal.fire({
                 title: "Login",
