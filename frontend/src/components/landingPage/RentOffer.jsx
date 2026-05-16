@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { BsFillGeoAltFill } from "react-icons/bs";
 const RentOffer = () => {
     const recentOffers = [
@@ -58,18 +59,18 @@ const RentOffer = () => {
         },
     ];
 
-    const renderSection = (title, linkText, items) => (
+    const renderSection = (title, linkText, to, items) => (
         <div className="mb-5">
-            <div className="mb-1">
+            <div className="mb-1 d-flex justify-content-between align-items-center">
                 <h6 className="fw-semibold mb-0">{title}</h6>
-                <a href="#" className="text-danger small">
-                    {linkText}
-                </a>
+                <Link to={to} className="text-danger small fw-bold text-decoration-none hover-underline">
+                    {linkText} →
+                </Link>
             </div>
             <div className="row">
                 {items.map((item, i) => (
-                    <div key={i} className="col-md-4 mb-4">
-                        <div className="card shadow-sm border-0 hover-shadow">
+                    <div key={i} className="col-md-4 mb-4" data-aos="fade-up" data-aos-delay={i * 100}>
+                        <div className="card shadow-sm border-0 h-100 property-card-mini">
                             <img
                                 src={item.img}
                                 alt={item.title}
@@ -81,9 +82,6 @@ const RentOffer = () => {
                                 <p className="text-muted small mb-1">
                                     <i className="me-1 text-success"><BsFillGeoAltFill /></i>
                                     {item.location}
-                                </p>
-                                <p className="text-muted small mb-2">
-                                    No description available.
                                 </p>
                                 <p className="text-success fw-semibold mb-0">{item.price}</p>
                             </div>
@@ -98,9 +96,9 @@ const RentOffer = () => {
         <>
             <div className=" py-5" style={{ backgroundColor: "#fceeee" }}>
                 <div className="container">
-                    {renderSection("Recent Offers", "Show more offers", recentOffers)}
-                    {renderSection("Recent Places for Rent", "Show more places for rent", recentRent)}
-                    {renderSection("Recent Places for Sale", "Show more places for sale", recentSale)}
+                    {renderSection("Recent Offers", "Show more offers", "/offers", recentOffers)}
+                    {renderSection("Recent Places for Rent", "Show more places for rent", "/rentals", recentRent)}
+                    {renderSection("Recent Places for Sale", "Show more places for sale", "/sales", recentSale)}
                 </div>
             </div>
         </>

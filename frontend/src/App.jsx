@@ -10,6 +10,9 @@ import Services from './components/landingPage/Services'
 import Property from './components/landingPage/Property'
 import UserRegister from './components/landingPage/UserRegister'
 import Login from './components/landingPage/Login'
+import AllOffers from './components/landingPage/AllOffers';
+import AllRentals from './components/landingPage/AllRentals';
+import AllSales from './components/landingPage/AllSales';
 import Footer from './components/landingPage/Footer'
 
 import AddProperty from './components/admin/AddProperty'
@@ -65,6 +68,9 @@ function App() {
           <Route path='/property' element={<Property />} />
           <Route path='/register' element={<UserRegister />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/offers' element={<AllOffers />} />
+          <Route path='/rentals' element={<AllRentals />} />
+          <Route path='/sales' element={<AllSales />} />
 
           {/* admin section */}
           {userData?.userType === "admin" && (
