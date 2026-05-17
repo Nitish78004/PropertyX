@@ -28,7 +28,7 @@ const Home = () => {
             <OurAmenities />
             
             {/* 6. Featured Listings */}
-            <Property />
+            <Property isFeatured={true} />
             
             {/* 7. Special Offers */}
             <RentOffer />

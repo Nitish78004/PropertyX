@@ -10,7 +10,7 @@ import { BsClockHistory } from "react-icons/bs";
 
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import API_URL, { IMAGE_URL } from '../../config';
 
 const listings = [
@@ -62,7 +62,7 @@ const listings = [
 
 
 
-const Property = () => {
+const Property = ({ isFeatured }) => {
     const location = useLocation()
     const navigate = useNavigate()
     const [listData, setListData] = useState([])
@@ -223,7 +223,7 @@ const Property = () => {
                         <h2 className="fw-bold">Featured Listings</h2>
                     </div>
                     <div className="row g-4">
-                        {listData.map((item, i) => (
+                        {(isFeatured ? listData.slice(0, 4) : listData).map((item, i) => (
                             <div key={i} className="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay={i * 100}>
                                 <div className="card h-100 shadow-sm border-0 property">
                                     <div className="position-relative">
@@ -250,6 +250,9 @@ const Property = () => {
                                         <button onClick={() => handleEnquiry(item?.title)} className='btn btn-outline-danger flex-fill small'>Enquiry</button>
                                         {(() => {
                                             const userData = JSON.parse(localStorage.getItem('userInfo'));
+                                            if (isFeatured) {
+                                                return <Link to="/property" className="btn btn-outline-danger btn-sm w-100 rounded-pill text-decoration-none text-center">View All</Link>;
+                                            }
                                             return (
                                                 <div className="d-flex justify-content-between align-items-center w-100">
                                                     {userData?.userType === 'user' && (
