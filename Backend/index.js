@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
 
 // Temporarily removed security middleware for local debugging
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 dbConnect()
 app.use('/img', express.static('uploads'))
 app.use('/api', router);
