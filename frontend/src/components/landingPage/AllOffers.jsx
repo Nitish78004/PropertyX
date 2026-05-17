@@ -3,6 +3,8 @@ import axios from 'axios';
 import { BsFillGeoAltFill, BsHouseDoor, BsTagFill } from "react-icons/bs";
 import { CiDroplet } from "react-icons/ci";
 import { BiFullscreen } from "react-icons/bi";
+import Swal from 'sweetalert2';
+import API_URL from '../../config';
 
 const fallbackOffers = [
     { title: 'Skyline Luxury Flat', price: '$4,500', location: 'Dubai, UAE', pic: 'rent1.webp', beds: 3, baths: 3, area: 2500, label: 'HOT DEAL', desc: 'Exclusive offer on this high-floor luxury flat with Burj Khalifa views.' },
@@ -15,6 +17,33 @@ const fallbackOffers = [
 
 const AllOffers = () => {
     const [listData, setListData] = useState([]);
+
+    const handleEnquiry = async (propertyTitle) => {
+        const { value: text } = await Swal.fire({
+            input: "textarea",
+            inputLabel: `Enquiry for ${propertyTitle}`,
+            inputPlaceholder: "Type your message here...",
+            inputAttributes: {
+                "aria-label": "Type your message here"
+            },
+            showCancelButton: true
+        });
+        if (text) {
+            try {
+                const userData = JSON.parse(localStorage.getItem('userInfo'));
+                await axios.post(`${API_URL}/add-contact-us`, {
+                    name: userData?.name || "Interested User",
+                    email: userData?.email || "No Email Provided",
+                    contact: userData?.contact || "No Contact Provided",
+                    subject: `Enquiry for ${propertyTitle}`,
+                    message: text
+                });
+                Swal.fire("Sent!", "Your enquiry has been sent to the agent.", "success");
+            } catch (error) {
+                Swal.fire("Error", "Failed to send enquiry.", "error");
+            }
+        }
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -69,7 +98,7 @@ const AllOffers = () => {
                                     </div>
                                 </div>
                                 <div className="p-3 pt-0">
-                                    <button className="btn btn-danger w-100 rounded-pill">View Offer</button>
+                                    <button onClick={() => handleEnquiry(item.title)} className="btn btn-danger w-100 rounded-pill">View Offer</button>
                                 </div>
                             </div>
                         </div>

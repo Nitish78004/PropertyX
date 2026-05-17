@@ -127,8 +127,16 @@ const NavBar = ({ userData, handleLogout }) => {
                             <button className="btn btn-danger w-100 rounded-pill fw-bold py-2 shadow-sm" onClick={handleLogout}>LogOut</button>
                         ) : (
                             <div className="d-grid gap-3">
-                                <Link to='/login' className="btn btn-danger rounded-pill fw-bold py-2 shadow-sm" data-bs-dismiss="offcanvas">Login</Link>
-                                <Link to='/register' className="btn btn-outline-danger rounded-pill fw-bold py-2" data-bs-dismiss="offcanvas">Register</Link>
+                                <Link to='/login' className="btn btn-danger rounded-pill fw-bold py-2 shadow-sm" onClick={() => {
+                                    const offcanvas = document.getElementById('offcanvasNavbar');
+                                    const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvas);
+                                    if(bsOffcanvas) bsOffcanvas.hide();
+                                }}>Login</Link>
+                                <Link to='/register' className="btn btn-outline-danger rounded-pill fw-bold py-2" onClick={() => {
+                                    const offcanvas = document.getElementById('offcanvasNavbar');
+                                    const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvas);
+                                    if(bsOffcanvas) bsOffcanvas.hide();
+                                }}>Register</Link>
                             </div>
                         )}
                     </div>
