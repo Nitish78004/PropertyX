@@ -48,7 +48,7 @@ const AllRentals = () => {
                             <div className="card h-100 shadow-sm border-0 property">
                                 <div className="position-relative">
                                     <img 
-                                        src={item.pic.startsWith('http') || item.pic.includes('.') ? item.pic : `https://propertyx-0l2i.onrender.com/img/${item?.pic}`} 
+                                        src={item.pic.startsWith('http')  ? item.pic : `https://propertyx-0l2i.onrender.com/img/${item?.pic}`} 
                                         className="card-img-top" 
                                         alt={item.title} 
                                         style={{height: '200px', objectFit: 'cover'}} 
