@@ -9,7 +9,7 @@ const ContactUs = () => {
 
     const onSubmit = async (data) => {
         try {
-            const response = await axios.post("http://localhost:5000/api/add-contact-us", data);
+            const response = await axios.post("https://propertyx-0l2i.onrender.com/api/add-contact-us", data);
             if (response.data?.code === 200) {
                 Swal.fire({
                     title: "Message Sent",

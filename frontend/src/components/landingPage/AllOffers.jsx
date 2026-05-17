@@ -48,7 +48,7 @@ const AllOffers = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/property-list');
+                const response = await axios.get('https://propertyx-0l2i.onrender.com/api/property-list');
                 if (response?.data?.code === 200 && response.data.data.length > 0) {
                     setListData(response?.data?.data);
                 } else {
@@ -76,7 +76,7 @@ const AllOffers = () => {
                             <div className="card h-100 shadow-sm border-0 property">
                                 <div className="position-relative">
                                     <img 
-                                        src={item.pic.startsWith('http') || item.pic.includes('.') ? item.pic : `http://localhost:5000/img/${item?.pic}`} 
+                                        src={item.pic.startsWith('http') || item.pic.includes('.') ? item.pic : `https://propertyx-0l2i.onrender.com/img/${item?.pic}`} 
                                         className="card-img-top" 
                                         alt={item.title} 
                                         style={{height: '200px', objectFit: 'cover'}} 

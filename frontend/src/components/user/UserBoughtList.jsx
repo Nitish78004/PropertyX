@@ -8,7 +8,7 @@ const UserBoughtList = () => {
     }, [])
     const fetchData = async () => {
         const UserData = JSON.parse(localStorage.getItem('userInfo'));
-        const response = await axios.post('http://localhost:5000/api/user-bought-list', {
+        const response = await axios.post('https://propertyx-0l2i.onrender.com/api/user-bought-list', {
             userId: UserData?._id
         })
         if (response?.data?.code == 200) {
@@ -50,7 +50,7 @@ const UserBoughtList = () => {
                                                 <img 
                                                     height="50" 
                                                     width="80" 
-                                                    src={`http://localhost:5000/img/${item?.pic}`} 
+                                                    src={`https://propertyx-0l2i.onrender.com/img/${item?.pic}`} 
                                                     alt='property'
                                                     style={{ objectFit: 'cover', borderRadius: '4px' }}
                                                 />

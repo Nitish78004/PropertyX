@@ -7,7 +7,7 @@ const UserList = () => {
         fetchData();
     }, [])
     const fetchData = async () => {
-        const response = await axios.get('http://localhost:5000/api/admin-user-list');
+        const response = await axios.get('https://propertyx-0l2i.onrender.com/api/admin-user-list');
         if (response?.data?.code == 200) {
             setData(response?.data?.data)
         }
@@ -44,7 +44,7 @@ const UserList = () => {
                                                 <img 
                                                     height="50" 
                                                     width="50" 
-                                                    src={`http://localhost:5000/img/${item?.profile}`} 
+                                                    src={`https://propertyx-0l2i.onrender.com/img/${item?.profile}`} 
                                                     alt='profile' 
                                                     style={{ objectFit: 'cover', borderRadius: '50%' }}
                                                 />

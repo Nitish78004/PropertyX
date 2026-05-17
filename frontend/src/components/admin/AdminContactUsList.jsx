@@ -12,7 +12,7 @@ const AdminContactUsLists = () => {
 
     const fetchMessages = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/admin-contact-list");
+            const response = await axios.get("https://propertyx-0l2i.onrender.com/api/admin-contact-list");
             if (response.data?.code === 200) {
                 setMessages(response.data?.data);
             }

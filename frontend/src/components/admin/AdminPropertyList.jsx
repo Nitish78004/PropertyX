@@ -20,14 +20,14 @@ const AdminPropertyList = () => {
     }, [])
 
     const fetchData = async () => {
-        const response = await axios.get('http://localhost:5000/api/property-list');
+        const response = await axios.get('https://propertyx-0l2i.onrender.com/api/property-list');
         if (response?.data?.code == 200) {
             setListData(response?.data?.data)
         }
     }
 
     const handleDelete = async (_id) => {
-        const response = await axios.post('http://localhost:5000/api/delete-property', { _id });
+        const response = await axios.post('https://propertyx-0l2i.onrender.com/api/delete-property', { _id });
         if (response?.data?.code == 200) {
             Swal.fire({
                 title: "Delete Property",
@@ -58,7 +58,7 @@ const AdminPropertyList = () => {
                             <div key={i} className="col-md-6 col-lg-3">
                                 <div className="card h-100 shadow-sm border-0 property">
                                     <div className="position-relative">
-                                        <img src={`http://localhost:5000/img/${item?.pic}`} className="card-img-top" alt={item.title} />
+                                        <img src={`https://propertyx-0l2i.onrender.com/img/${item?.pic}`} className="card-img-top" alt={item.title} />
                                         <span className="badge bg-success position-absolute top-0 end-0 m-2">{item.label}</span>
                                         <div className="position-absolute bottom-0 text-white d-flex justify-content-between w-100 p-2" style={{ background: 'rgba(0,0,0,0.5)' }}>
                                             <small><BsGeoAltFill />{item.location}</small>

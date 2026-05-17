@@ -49,7 +49,7 @@ const AdminProfile = () => {
         formData.append("userId", userData?._id);
 
         const response = await axios.put(
-            "http://localhost:5000/api/user-update",
+            "https://propertyx-0l2i.onrender.com/api/user-update",
             formData,
             {
                 headers: {

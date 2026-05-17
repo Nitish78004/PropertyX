@@ -7,7 +7,7 @@ const AdminSoldProperty = () => {
         fetchData();
     }, [])
     const fetchData = async () => {
-        const response = await axios.get('http://localhost:5000/api/admin-sold-list');
+        const response = await axios.get('https://propertyx-0l2i.onrender.com/api/admin-sold-list');
         if (response?.data?.code == 200) {
             setData(response?.data?.data)
         }
@@ -48,7 +48,7 @@ const AdminSoldProperty = () => {
                                                 <img 
                                                     height="50" 
                                                     width="80" 
-                                                    src={`http://localhost:5000/img/${item?.pic}`} 
+                                                    src={`https://propertyx-0l2i.onrender.com/img/${item?.pic}`} 
                                                     alt='property' 
                                                     style={{ objectFit: 'cover', borderRadius: '4px' }}
                                                 />
