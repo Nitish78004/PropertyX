@@ -20,6 +20,9 @@ const propertySchema = new mongoose.Schema({
     description: { type: String },
     location: { type: String },
     pic: { type: String },
+    label: { type: String, default: 'FOR SALE' },
+    beds: { type: Number, default: 3 },
+    baths: { type: Number, default: 2 },
     createdAt: { type: Date, default: Date.now() },
     updatedAt: { type: Date, default: Date.now() },
 })
