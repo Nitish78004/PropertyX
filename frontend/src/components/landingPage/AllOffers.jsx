@@ -71,7 +71,7 @@ const AllOffers = () => {
                     <p className="text-muted">Don't miss out on these limited-time deals on premium properties.</p>
                 </div>
                 <div className="row g-4">
-                    {listData.map((item, i) => (
+                    {listData.slice(0, 4).map((item, i) => (
                         <div key={i} className="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay={i * 100}>
                             <div className="card h-100 shadow-sm border-0 property">
                                 <div className="position-relative">

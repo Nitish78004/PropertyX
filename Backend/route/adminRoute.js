@@ -42,7 +42,10 @@ adminRoute.post('/add-property', async (req, res) => {
 })
 adminRoute.get('/property-list', async (req, res) => {
     try {
-        const result = await propertyModel.find();
+        const soldProperties = await buyerModel.find({}, 'propertyId');
+        const soldPropertyIds = soldProperties.map(item => item.propertyId);
+
+        const result = await propertyModel.find({ _id: { $nin: soldPropertyIds } });
         if (result?.length > 0) {
             res.json({
                 code: 200,

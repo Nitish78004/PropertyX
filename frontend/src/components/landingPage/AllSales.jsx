@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { BsFillGeoAltFill, BsHouseDoor } from "react-icons/bs";
 import { CiDroplet } from "react-icons/ci";
@@ -43,7 +44,7 @@ const AllSales = () => {
                     <p className="text-muted">Find your dream home among our premium listings for sale.</p>
                 </div>
                 <div className="row g-4">
-                    {listData.map((item, i) => (
+                    {listData.slice(0, 4).map((item, i) => (
                         <div key={i} className="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay={i * 100}>
                             <div className="card h-100 shadow-sm border-0 property">
                                 <div className="position-relative">
@@ -67,7 +68,7 @@ const AllSales = () => {
                                     </div>
                                 </div>
                                 <div className="p-3 pt-0">
-                                    <button className="btn btn-danger w-100 rounded-pill">Buy Now</button>
+                                    <Link to="/property" className="btn btn-outline-danger w-100 rounded-pill d-block text-center text-decoration-none">View Details</Link>
                                 </div>
                             </div>
                         </div>

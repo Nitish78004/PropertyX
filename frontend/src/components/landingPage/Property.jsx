@@ -76,7 +76,7 @@ const Property = () => {
             setListData(response?.data?.data)
         }
     }
-    const handleBuy = async (propertyId) => {
+    const handleBuy = async (propertyId, propertyPrice, propertyTitle) => {
         const userData = JSON.parse(localStorage.getItem('userInfo'));
         if (!userData) {
             Swal.fire({
@@ -92,23 +92,99 @@ const Property = () => {
             });
             return;
         }
-        const response = await axios.post(`${API_URL}/buy`, { userId: userData?._id, propertyId });
 
-        console.log(response)
-        if (response?.data?.code == 200) {
+        // Show Payment Modal
+        const { value: formValues, isConfirmed } = await Swal.fire({
+            title: "🔒 Secure Checkout",
+            html: `
+                <div style="text-align: left; font-family: 'Inter', sans-serif;">
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #dee2e6;">
+                        <h6 style="margin:0; color:#333;">Property: <span style="font-weight:bold;">${propertyTitle || 'Luxury Property'}</span></h6>
+                        <h4 style="margin:5px 0 0 0; color:#dc3545;">Total: ${propertyPrice || 'TBD'}</h4>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label style="font-size: 14px; font-weight: 600; color: #555;">Cardholder Name</label>
+                        <input id="swal-name" class="form-control mt-1" placeholder="John Doe">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label style="font-size: 14px; font-weight: 600; color: #555;">Card Number</label>
+                        <div style="position:relative;">
+                            <input id="swal-card" class="form-control mt-1" placeholder="0000 0000 0000 0000" maxlength="19">
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 15px;">
+                        <div class="form-group flex-fill">
+                            <label style="font-size: 14px; font-weight: 600; color: #555;">Expiry Date</label>
+                            <input id="swal-exp" class="form-control mt-1" placeholder="MM/YY" maxlength="5">
+                        </div>
+                        <div class="form-group flex-fill">
+                            <label style="font-size: 14px; font-weight: 600; color: #555;">CVV</label>
+                            <input id="swal-cvv" class="form-control mt-1" type="password" placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+                </div>
+            `,
+            showCancelButton: true,
+            confirmButtonText: 'Pay Now & Complete Purchase',
+            confirmButtonColor: '#198754',
+            cancelButtonText: 'Cancel',
+            customClass: {
+                confirmButton: 'px-4 py-2 fw-bold',
+                cancelButton: 'px-4 py-2 text-dark'
+            },
+            preConfirm: () => {
+                const name = document.getElementById("swal-name").value;
+                const card = document.getElementById("swal-card").value;
+                const exp = document.getElementById("swal-exp").value;
+                const cvv = document.getElementById("swal-cvv").value;
+                
+                if (!name || !card || !exp || !cvv) {
+                    Swal.showValidationMessage('Please fill all payment details');
+                    return false;
+                }
+                if (card.length < 15) {
+                    Swal.showValidationMessage('Invalid Card Number');
+                    return false;
+                }
+                return { name, card, exp, cvv };
+            }
+        });
+
+        if (isConfirmed && formValues) {
+            // Show Processing
             Swal.fire({
-                title: "Buy Property",
-                text: response?.data?.message,
-                icon: 'success'
-            })
-        } else {
-            Swal.fire({
-                title: "Buy property",
-                text: response?.data?.message,
-                icon: 'error'
-            })
+                title: 'Processing Payment...',
+                html: 'Please wait while we securely process your transaction.',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            try {
+                const response = await axios.post(`${API_URL}/buy`, { userId: userData?._id, propertyId });
+                
+                if (response?.data?.code == 200) {
+                    Swal.fire({
+                        title: "Payment Successful! 🎉",
+                        text: "Congratulations! " + response?.data?.message,
+                        icon: 'success'
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Payment Failed",
+                        text: response?.data?.message,
+                        icon: 'error'
+                    });
+                }
+            } catch (error) {
+                Swal.fire({
+                    title: "Transaction Error",
+                    text: "Something went wrong during payment processing.",
+                    icon: 'error'
+                });
+            }
         }
-
     }
     const handleEnquiry = async (propertyTitle) => {
         const { value: text } = await Swal.fire({
@@ -179,7 +255,7 @@ const Property = () => {
                                                     {userData?.userType === 'user' && (
                                                         <button 
                                                             className="btn btn-danger btn-sm px-4 rounded-pill fw-bold"
-                                                            onClick={() => handleBuy(item._id)}
+                                                            onClick={() => handleBuy(item._id, item.price, item.title)}
                                                         >
                                                             Buy Now
                                                         </button>
@@ -190,7 +266,7 @@ const Property = () => {
                                                     {!userData && (
                                                          <button 
                                                             className="btn btn-danger btn-sm px-4 rounded-pill fw-bold"
-                                                            onClick={() => handleBuy(item._id)}
+                                                            onClick={() => handleBuy(item._id, item.price, item.title)}
                                                         >
                                                             Buy Now
                                                         </button>
